@@ -11,6 +11,7 @@ class TestRoman < Test::Unit::TestCase
 
   def test_one
     assert_equal 'I',Roman.convert(1)
+    assert_equal 'II',Roman.convert(2)
   end
 
 
