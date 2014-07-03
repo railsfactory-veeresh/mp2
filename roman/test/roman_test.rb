@@ -9,6 +9,10 @@ class TestRoman < Test::Unit::TestCase
   end
 
 
+  def test_one
+    assert_equal 'I',Roman.convert(1)
+  end
+
 
 
 end  
