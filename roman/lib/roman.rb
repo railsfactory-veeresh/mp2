@@ -1,11 +1,11 @@
 class Roman
 
-  def convert(e)
+  def self.convert(e)
 
 a = (e/1000)*1000
-b = ((e/100)%10)*100
+b = (((e/100)%10)%10)*100
 c = ((e/10)%10)*10
-d = ((e/1)%10)*1
+d = (e%10)*1
 
 if (a ==1000)
  "M"
@@ -72,18 +72,7 @@ elsif d ==8
 elsif (d == 9)
  "IX"
 end
-
-
-
-
-
-
-
-
-
-
-    
-    end
+ end
   end
 
   

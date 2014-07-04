@@ -10,8 +10,9 @@ class TestRoman < Test::Unit::TestCase
 
 
   def test_one
-    assert_equal 'C',Roman.convert(100)
-    assert_equal 'M',Roman.convert(500)
+    assert_equal 'V',Roman.convert(15)
+    assert_equal 'VI',Roman.convert(6)
+    assert_equal 'IX',Roman.convert(9)
     
   end
 
