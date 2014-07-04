@@ -1,78 +1,61 @@
 class Roman
 
-  def self.convert(e)
-
-a = (e/1000)*1000
-b = (((e/100)%10)%10)*100
-c = ((e/10)%10)*10
-d = (e%10)*1
-
-if (a ==1000)
- "M"
-elsif (a ==2000)
- "MM"
-elsif (a ==3000)
- "MMM"
+  def self.convert(input)
+       String s = ""
+    while input >= 1000 
+        s += "M"
+        input -= 1000
+    end        
+    while input >= 900 
+        s += "CM"
+        input -= 900
+     end
+    
+    while input >= 500
+        s += "D"
+        input -= 500
+    end
+    while input >= 400 
+        s += "CD"
+        input -= 400
+    end
+    while input >= 100 
+        s += "C"
+        input -= 100
+    end
+    while input >= 90
+        s += "XC"
+        input -= 90
+    end
+    while input >= 50 
+        s += "L"
+        input -= 50
+    end
+    while input >= 40
+        s += "XL"
+        input -= 40
+    end
+    while input >= 10
+        s += "X"
+        input -= 10
+    end
+    while input >= 9
+        s += "IX"
+        input -= 9
+    end
+    while input >= 5 
+        s += "V"
+        input -= 5
+    end
+    while input >= 4 
+        s += "IV"
+        input -= 4
+    end
+    while input >= 1 
+        s += "I"
+        input -= 1
+     end   
+    return s
 end
-if (b == 100)
-  "C"
-elsif b == 200
- "CC"
-elsif (b == 300)
- "CCC"
-elsif (b == 400)
- "CD"
-elsif (b ==500)
-  "D"
-elsif (b == 600)
-  "DC"
-elsif (b == 700)
- "DCC"
-elsif (b ==800)
- "DCCC"
-elsif (b == 900)
-  "CM"
-end
-
-if (c == 10)
- "X"
-elsif (c == 20)
- "XX"
-elsif (c == 30)
- "XXX"
-elsif (c == 40)
- "XL"
-elsif (c ==50)
-"L"
-elsif (c == 60)
- "LX"
-elsif (c == 70)
- "LXX"
-elsif (c ==80)
- "LXXX"
-elsif (c == 90)
- "XC"
-end
-if (d == 1)
- "I"
-elsif (d == 2)
- "II"
-elsif (d == 3)
- "III"
-elsif (d == 4)
- "IV"
-elsif d ==5
- "V"
-elsif (d == 6)
-  "VI"
-elsif d == 7
-  "VII"
-elsif d ==8
- "VIII"
-elsif (d == 9)
- "IX"
-end
- end
-  end
-
-  
+end  
+ 
