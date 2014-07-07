@@ -1,4 +1,4 @@
-
+test passes for follwing inputs
 
 NUMBER      IN WORDS
 
