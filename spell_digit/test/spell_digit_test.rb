@@ -1,16 +1,15 @@
-require_relative '../lib/spell_digit'
+require '../lib/spell_digit.rb'
 require 'test/unit'
 
 
 class TestSpell_digit < Test::Unit::TestCase
-
-  def test_hello
-    assert true
-  end
-
+ def hello
+ assertion true
+end
+ 
 
   def test_one
-   assert_equal "thirty three",Spell_digit.convert(33)
-   assert_equal "fifteen",Spell_digit.convert(15)
+   assert_equal "NINE HUNDRED",Spell_digit.convert(900)
+   assert_equal "FIFTY",Spell_digit.convert(50)
   end
 end
