@@ -1,13 +1,14 @@
 require 'pry'
-class storage
+class Storage
 	def self.dump(file)
-		bind pry
+		binding.pry
 		output=File.open("file",w)
    		sample=output.write("hello world")
-        return sample
-    end
+           return sample
+        end
     def self.delete(file)
-    	file.delete(file)
+    	f1=file.delete(file)
+         return f1
     end
 
 end
