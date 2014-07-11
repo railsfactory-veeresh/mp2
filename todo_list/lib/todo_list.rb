@@ -2,7 +2,7 @@ class Todolist
 @todo=[]
 @pending=[]
 @completed=[]
-
+@add=[]
 def self.initialize(filename)
 @filename=filename
 end
@@ -10,18 +10,19 @@ def self.empty
 @todo.clear
 @pending.clear
 @completed.clear
+@add.clear
 return 0
 end
 
 
 def self.add(item)
+@add << item
 @pending << item
-return @pending.size
+return @add.size
 end
 
-def self.list
-@todo = @pending + @completed
-return @todo.size
+def self.pending
+return @pending.size
 end
 
 def self.complete(linenumber)
@@ -30,12 +31,14 @@ def self.complete(linenumber)
 return @completed.size
 end
 
-def self.pending
-return @pending.size
-end
-
 def completed
 return @completed.size
+end
+
+
+def self.list
+@todo = @pending + @completed
+return @todo.size
 end
 
 def self.delete(linenumber)
