@@ -35,12 +35,6 @@ def complete(num)
 @completed.size
 end
 
-#def self.incomplete(num)
-#var = @todo[num]
-#@pending << var
-#@completed.delete var
-#end
-
 def delete(num)
 @completed.delete_at(num - 1)
 @completed
