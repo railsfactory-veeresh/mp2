@@ -1,47 +1,121 @@
-require  '../lib/todo_list.rb'
+require '../lib/todo_list.rb'
 require 'test/unit'
+class TestTodo < Test::Unit::TestCase
+ 
 
+def setup
 
-class Testcase < Test::Unit::TestCase
- $object=Todolist.new("veer.txt")
-
-#test for empty
-  def test_add1
-  assert_equal 0,$object.empty
-  assert_equal 0,$object.list
-  assert_equal 0,$object.pending
-  end
-#test for insertion one element
-   def test_add2
-   assert_equal 0,$object.empty
-   assert_equal 1,$object.add("hello")
-   assert_equal 1,$object.pending
-   assert_equal 1,$object.list
-   assert_equal "hello",$object.show_pending(1)
+  @a = Todolist.new("veer.txt")
+ 
 end
-#test for insertion two elements
-  def test_add3
-  assert_equal 2,$object.add("yellow")
-  assert_equal 3,$object.add("blue")
-  assert_equal 1,$object.complete(1)
-  assert_equal 2,$object.pending
-  assert_equal "yellow",$object.show_pending(1)
-  assert_equal "hello",$object.show_completed(1)
-  end
-#test for modify
-  def test_add4
-  assert_equal 4,$object.add("orange")
-  assert_equal 5,$object.add("pink")
-  assert_equal 2,$object.complete(2)
-  assert_equal 3,$object.modify(2,"hi")
-  assert_equal 3,$object.pending
-  end
-#test for delete
-  def test_add5
-  assert_equal 6,$object.add("gray")
-  assert_equal 1,$object.delete(1)
-  assert_equal 4,$object.pending
-  assert_equal 5,$object.list
-  assert_equal "blue",$object.show_completed(1)
+
+def teardown
+
+  @a=nil
+ 
+end
+
+
+ def test_zempty
+  @a.empty
+  assert_equal 0,@a.pending.size
+  assert_equal 0,@a.completed.size
+  assert_equal 0,@a.list.size
  end
+
+
+
+  def test_add1
+   @a.empty
+   @a.add("one")
+   assert_equal 1,@a.list.size
+   assert_equal 1,@a.pending.size
+   assert_equal 0,@a.completed.size
+ end
+
+
+
+  def test_add2
+@a.empty
+@a.add("one")
+   @a.add("two")
+   assert_equal 2,@a.list.size
+   assert_equal 2,@a.pending.size
+   assert_equal 0,@a.completed.size
+ end
+
+
+
+
+ def test_add3
+   @a.empty
+   @a.add("write")
+   @a.add("read")
+   assert_equal 2,@a.list.size
+   assert_equal 2,@a.pending.size
+   assert_equal 1,@a.complete(1)
+   assert_equal 1,@a.pending.size
+    assert_equal 1,@a.completed.size
+ end
+
+
+  
+ def test_complete
+# precondition
+@a.empty
+@a.add("one")
+#before state
+assert_equal 1,@a.pending.size
+assert_equal 0,@a.completed.size
+assert_equal 1,@a.list.size
+
+
+#action
+   @a.complete(1)
+
+#after 
+assert_equal 0,@a.pending.size
+assert_equal 1,@a.completed.size
+assert_equal 1,@a.list.size
+ end
+
+
+
+def test_delete
+# precondition
+@a.empty
+@a.add("one")
+ @a.complete(1)
+
+#before state
+assert_equal 0,@a.pending.size
+assert_equal 1,@a.completed.size
+assert_equal 1,@a.list.size
+
+  @a.delete(1)
+#after delition
+   assert_equal 0,@a.pending.size
+   assert_equal 0,@a.completed.size
+   assert_equal 0,@a.list.size
+ end
+
+ def test_modify
+#before state
+   @a.empty
+   @a.add("write")
+   @a.add("read")
+   assert_equal 2,@a.list.size
+   assert_equal 2,@a.pending.size
+   assert_equal "merge",@a.modify(2,"merge")
+#after merge
+   assert_equal 2,@a.pending.size
+   assert_equal "merge",@a.show_pending(2)
+   assert_equal 0,@a.completed.size
+#before complition
+@a.complete(1)
+#after complition
+assert_equal 1,@a.completed.size
+assert_equal "write",@a.show_completed(1)
+end
+
 end

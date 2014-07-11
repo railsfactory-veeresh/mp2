@@ -1,71 +1,72 @@
-class Todolist
-$todo=[]
-$pending=[]
-$completed=[]
-$add=[]
-def initialize(filename)
-$filename=filename
-end
-def empty
-$todo.clear
-$pending.clear
-$completed.clear
-$add.clear
-return 0
-end
+class Todolist 
+# attr_accessor :filename
+ def initialize(filename)
+   @filename = filename
+
+@pending = []
+@todo = []
+@completed = []
 
 
-def add(item)
-$add << item
-$pending << item
-return $add.size
-end
+
+ end
 
 def pending
-return $pending.size
+  return @pending
 end
 
-def complete(linenumber)
-$completed << $pending[linenumber-1]
-$pending.delete_at(linenumber - 1)
-return $completed.size
+def list
+  @todo = @pending + @completed
+ @todo
 end
 
 def completed
-return $completed.size
+   @completed
 end
 
-
-def list
-$todo = $pending + $completed
-return $todo.size
+def add(title)
+  @pending << title
+  @pending
 end
 
-def delete(linenumber)
-$completed.delete_at(linenumber - 1)
-
-return $completed.size
+def complete(num)
+@completed << @pending[num - 1]
+@pending.delete_at(num - 1)
+@completed.size
 end
 
+#def self.incomplete(num)
+#var = @todo[num]
+#@pending << var
+#@completed.delete var
+#end
 
-def modify(linenumber,item)
-$pending.delete_at(linenumber-1)
-$pending << item
-return $pending.size
+def delete(num)
+@completed.delete_at(num - 1)
+@completed
 end
 
 def empty
-a = $todo.clear
-return a.size
+@pending = []
+@completed = []
+@todo = []
+return true
 end
 
-def show_pending(linenumber)
-return $pending[linenumber-1]
+def modify(num,title)
+@pending[num - 1] = title
+
+return @pending[num - 1]
 end
 
-def show_completed(linenumber)
-return $completed[linenumber-1]
+def show_pending(num)
+ return @pending[num - 1]
 end
+
+def show_completed(num)
+ return @completed[num - 1]
+end
+
 end
 
 
