@@ -78,9 +78,6 @@ assert_equal 0,@a.pending.size
 assert_equal 1,@a.completed.size
 assert_equal 1,@a.list.size
  end
-
-
-
 def test_delete
 # precondition
 @a.empty
@@ -118,4 +115,11 @@ assert_equal 1,@a.completed.size
 assert_equal "write",@a.show_completed(1)
 end
 
+def test_load
+@a.empty
+@a.load1
+   assert_equal 2,@a.pending.size
+   assert_equal 1,@a.completed.size
+   assert_equal 3,@a.list.size
+end
 end
