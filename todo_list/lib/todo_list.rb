@@ -1,12 +1,16 @@
 class Todolist
-attr_accessor :filename,:todo,:pending,:completed
 @todo=[]
 @pending=[]
 @completed=[]
 
-
 def self.initialize(filename)
 @filename=filename
+end
+def self.empty
+@todo.clear
+@pending.clear
+@completed.clear
+return 0
 end
 
 
@@ -47,7 +51,7 @@ return @pending.size
 end
 
 def self.empty
-a = @todo.delete
+a = @todo.clear
 return a.size
 end
 
