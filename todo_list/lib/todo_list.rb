@@ -43,6 +43,7 @@ end
 
 def self.delete(linenumber)
 @completed.delete_at(linenumber - 1)
+
 return @completed.size
 end
 
