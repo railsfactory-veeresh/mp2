@@ -114,12 +114,13 @@ assert_equal 1,@a.list.size
 assert_equal 1,@a.completed.size
 assert_equal "write",@a.show_completed(1)
 end
-
 def test_load
 @a.empty
-@a.load1
+#after loading
+   @a.load1
    assert_equal 2,@a.pending.size
    assert_equal 1,@a.completed.size
    assert_equal 3,@a.list.size
+   @a.save
 end
 end

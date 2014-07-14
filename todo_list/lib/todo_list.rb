@@ -1,80 +1,75 @@
 class Todolist 
 attr_accessor :filename
- def initialize(filename)
+  def initialize(filename)
    @filename = filename
+   @pending = []
+   @todo = []
+   @completed = []
+  end
 
-@pending = []
-@todo = []
-@completed = []
-
-
-
- end
-
-def pending
-  return @pending
-end
-
-def list
+  def pending
+    return @pending
+  end
+ 
+  def list
   @todo = @pending + @completed
- @todo
-end
+  @todo
+  end
 
-def completed
+  def completed
    @completed
-end
+  end
 
-def add(title)
+  def add(title)
   @pending << title
   @pending
-end
+  end
 
-def complete(num)
-@completed << @pending[num - 1]
-@pending.delete_at(num - 1)
-@completed.size
-end
+  def complete(num)
+  @completed << @pending[num - 1]
+  @pending.delete_at(num - 1)
+  @completed.size
+  end
 
-def delete(num)
-@completed.delete_at(num - 1)
-@completed
-end
+  def delete(num)
+  @completed.delete_at(num - 1)
+  @completed
+  end
 
-def empty
-@pending = []
-@completed = []
-@todo = []
-return true
-end
+  def empty
+  @pending = []
+  @completed = []
+  @todo = []
+  return true
+ end
 
-def modify(num,title)
-@pending[num - 1] = title
+  def modify(num,title)
+    @pending[num - 1] = title
+    return @pending[num - 1]
+  end
 
-return @pending[num - 1]
-end
+  def show_pending(num)
+    return @pending[num - 1]
+  end
 
-def show_pending(num)
- return @pending[num - 1]
-end
-
-def show_completed(num)
- return @completed[num - 1]
-end
-def save
-f = File.open(@filename, "w")
-str =""
-str = @todo.join("\n")
-f.write(str)
-f.close
-end
+  def show_completed(num)
+    return @completed[num - 1]
+  end
+  def save
+    f = File.open(@filename, "w")
+    str =""
+    str = @todo.join("\n")
+    f.write(str)
+    f.close
+   end
 
 
-def load1
+  def load1
    f = File.open(@filename,'r')
    f.each_line { |line| @todo << line }
    @completed = @todo.select {|c| c.match("#done")}
-    @pending = @todo - @completed
-end
+   @pending = @todo - @completed
+  end
 end
 
 
