@@ -58,10 +58,7 @@ class Todolist
          
  	return @completed[num - 1]
 	end
-
-        def save
-        end
-      
+         
        def load1
         f = File.read(@filename)
         f.each_line do |line|

@@ -144,8 +144,8 @@ assert_equal 1,@a.list.size
  
  def test_save1
   @a.empty
-     @a.add("man #undone")
-       @a.add("sag #undone")
+     @a.add("veer #undone")
+       @a.add("yh #undone")
      assert_equal 2,@a.pending.size
      assert_equal 0,@a.completed.size
       @a.complete9(1)
